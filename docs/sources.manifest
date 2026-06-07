@@ -1,0 +1,7 @@
+# Live AWS announcement feeds for the RAG demo.
+# Run: ./scripts/fetch-corpus.sh  (local inspection only)
+# Production ingest: Lambda on terraform apply + daily EventBridge schedule
+#
+# type  feed id         url
+rss     aws-whats-new   https://aws.amazon.com/about-aws/whats-new/recent/feed/
+rss     aws-news-blog   https://aws.amazon.com/blogs/aws/feed/
