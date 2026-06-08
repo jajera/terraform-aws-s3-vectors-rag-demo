@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AWS News Briefing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/amazon-cognito-identity-js@6.3.12/dist/amazon-cognito-identity.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+    <script src="config.js"></script>
+  </head>
+  <body>
+    <div id="login-screen" class="panel hidden">
+      <h1>AWS News Briefing</h1>
+      <p class="subtitle">Sign in to query recent AWS announcements.</p>
+      <form id="login-form">
+        <label>
+          Email
+          <input id="email" type="email" required autocomplete="username" />
+        </label>
+        <label>
+          Password
+          <input id="password" type="password" required autocomplete="current-password" />
+        </label>
+        <button type="submit">Sign in</button>
+      </form>
+      <p id="login-error" class="error hidden"></p>
+    </div>
+
+    <div id="app-screen" class="hidden">
+      <header class="topbar">
+        <div>
+          <h1>AWS News Briefing</h1>
+          <p class="subtitle">Answers grounded in live What's New and AWS News Blog RSS.</p>
+        </div>
+        <div class="topbar-actions">
+          <div id="corpus-stats" class="stats"></div>
+          <button id="refresh-btn" class="secondary hidden">Refresh corpus</button>
+          <button id="logout-btn" class="secondary">Sign out</button>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="chat panel">
+          <div id="messages" class="messages">
+            <div id="welcome" class="welcome">
+              <p>Ask about recent AWS announcements — Bedrock, storage, generative AI, and more.</p>
+            </div>
+          </div>
+          <form id="chat-form" class="chat-form">
+            <input
+              id="question"
+              type="text"
+              placeholder="Ask about recent AWS announcements..."
+              required
+              autocomplete="off"
+            />
+            <button id="ask-btn" type="submit">Ask</button>
+          </form>
+          <div class="examples">
+            <button class="chip" data-query="What did AWS announce recently about Amazon Bedrock?">
+              Bedrock updates
+            </button>
+            <button class="chip" data-query="Summarize recent AWS storage announcements.">
+              Storage news
+            </button>
+            <button class="chip" data-query="What new generative AI features did AWS launch?">
+              Generative AI
+            </button>
+            <button class="chip" data-query="Summarize AWS news from the last 2 weeks.">
+              Last 2 weeks
+            </button>
+          </div>
+        </section>
+
+        <aside class="sources panel">
+          <h2>Latest retrieval</h2>
+          <p class="sources-hint muted">Matched announcements for your last question.</p>
+          <div id="sources-list" class="sources-list">
+            <p class="muted empty-state">Ask a question to see matched announcements.</p>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="api.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
