@@ -32,34 +32,15 @@ Amazon S3 Vectors is a purpose-built vector storage capability within Amazon S3.
 
 ### Core Concepts
 
-| Concept | Description |
-| ------- | ----------- |
-| **Vector Bucket** | A specialized S3 bucket type designed for hosting vector indexes. Created via `aws_s3vectors_vector_bucket`. |
-| **Vector Index** | A named index within a vector bucket that defines how vectors are stored and searched. Has a fixed dimension, distance metric, and data type. |
-| **Dimension** | The number of floating-point values in each vector. Must match your embedding model output (e.g., 1024 for Amazon Titan Embeddings V2). |
-| **Distance Metric** | The algorithm for measuring similarity: `cosine` (angle-based, normalized) or `euclidean` (straight-line distance). |
-| **Data Type** | Numeric precision for stored vectors: `float32` in this demo. |
+![S3 Vectors core concepts — Vector Bucket, Index, Dimension, Distance Metric, Data Type](s3-vectors-core-concepts.png)
 
 ### S3 Vectors API Operations
 
-| Operation | Purpose |
-| --------- | ------- |
-| `PutVectors` | Store one or more vectors with associated metadata |
-| `QueryVectors` | Find the most similar vectors to a query vector (Top-K nearest neighbors) |
-| `GetVectors` | Retrieve specific vectors by key |
-| `DeleteVectors` | Remove vectors from the index |
-| `ListIndexes` | Enumerate indexes within a vector bucket |
+![S3 Vectors API operations — PutVectors, QueryVectors, GetVectors, DeleteVectors, ListIndexes](s3-vectors-api-operations.png)
 
 ### How It Differs from Traditional Vector Databases
 
-| Aspect | S3 Vectors | Traditional Vector DB (Pinecone, Weaviate, etc.) |
-| ------ | ---------- | ------------------------------------------------ |
-| Infrastructure | Fully managed, no servers | Requires cluster provisioning or SaaS |
-| Pricing | Pay per operation + storage | Capacity-based or pod-based pricing |
-| Provisioning | Single Terraform resource | Complex cluster configuration |
-| Scaling | Automatic | Manual or auto-scaling policies |
-| Integration | Native AWS IAM, no API keys | Separate auth systems |
-| Terraform support | `aws_s3vectors_vector_bucket` + `aws_s3vectors_index` | Provider-specific or custom |
+![S3 Vectors vs traditional vector databases — infrastructure, pricing, provisioning, scaling, integration, Terraform](s3-vectors-comparison.png)
 
 ---
 
